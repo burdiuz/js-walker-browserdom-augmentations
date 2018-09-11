@@ -22,7 +22,7 @@ var event = {
   emmit
 };
 
-const name = (node, adapter) => adapter.toNode(node).nodeName;
+const name = (node, adapter) => adapter.getName(node);
 
 const text = (node, adapter) => adapter.toNode(node).innerText;
 
@@ -45,6 +45,10 @@ const attribute = (node, adapter, args) => {
   return target.getAttribute(name);
 };
 
+const parent = (node, adapter) => adapter.getParentNode(node);
+
+const root = (node, adapter) => adapter.getRootNode(node);
+
 const query = (node, adapter, [queryString], utils) => {
   const result = adapter.toNode(node).querySelector(queryString);
   return utils.wrap(adapter.isNode(result) ? result : [], adapter);
@@ -60,6 +64,8 @@ var element = {
   text,
   attributes,
   attribute,
+  parent,
+  root,
   query,
   queryAll
 };

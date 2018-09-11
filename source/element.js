@@ -5,7 +5,7 @@ const text = (node, adapter) => adapter.toNode(node).innerText;
 const attributes = (node, adapter) => adapter.toNode(node).attributes;
 
 const attribute = (node, adapter, args) => {
-  const [ name ] = args;
+  const [name] = args;
   const target = adapter.toNode(node);
 
   if (args.length === 2) {
@@ -20,6 +20,10 @@ const attribute = (node, adapter, args) => {
 
   return target.getAttribute(name);
 };
+
+const parent = (node, adapter) => adapter.getParentNode(node);
+
+const root = (node, adapter) => adapter.getRootNode(node);
 
 const query = (node, adapter, [queryString], utils) => {
   const result = adapter.toNode(node).querySelector(queryString);
@@ -36,6 +40,8 @@ export default {
   text,
   attributes,
   attribute,
+  parent,
+  root,
   query,
   queryAll,
 };
