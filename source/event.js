@@ -1,7 +1,7 @@
 const on = (node, adapter, [eventType, callback]) => {
-  node = adapter.toNode(node);
-  node.addEventListener(eventType, callback);
-  return () => node.removeEventListener(eventType, callback);
+  const target = adapter.toNode(node);
+  target.addEventListener(eventType, callback);
+  return () => target.removeEventListener(eventType, callback);
 };
 
 const off = (node, adapter, [eventType, callback]) => {

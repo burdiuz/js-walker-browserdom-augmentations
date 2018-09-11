@@ -1,11 +1,25 @@
-const name = (node, adapter) =>
-  adapter.getName(node);
+const name = (node, adapter) => adapter.toNode(node).nodeName;
 
-const text = (node, adapter) =>
-  adapter.getText(node);
+const text = (node, adapter) => adapter.toNode(node).innerText;
 
-const attributes = (node, adapter) =>
-  adapter.getAttributes(node);
+const attributes = (node, adapter) => adapter.toNode(node).attributes;
+
+const attribute = (node, adapter, args) => {
+  const [ name ] = args;
+  const target = adapter.toNode(node);
+
+  if (args.length === 2) {
+    const [value] = args;
+
+    if (value === undefined) {
+      target.removeAttribute(name);
+    } else {
+      target.setAttribute(name, value);
+    }
+  }
+
+  return target.getAttribute(name);
+};
 
 const query = (node, adapter, [queryString], utils) => {
   const result = adapter.toNode(node).querySelector(queryString);
@@ -21,6 +35,7 @@ export default {
   name,
   text,
   attributes,
+  attribute,
   query,
   queryAll,
 };
