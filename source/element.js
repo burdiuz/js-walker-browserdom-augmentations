@@ -1,4 +1,4 @@
-const name = (node, adapter) => adapter.toNode(node).nodeName;
+const name = (node, adapter) => adapter.getName(node);
 
 const text = (node, adapter) => adapter.toNode(node).innerText;
 
