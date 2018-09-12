@@ -1,7 +1,7 @@
 {
   "name": "@actualwave/walker-browserdom-augmentations",
   "description": "TreeWalker augmentations for DOM Nodes",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "keywords": [
     "js",
